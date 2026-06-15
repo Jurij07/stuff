@@ -1,41 +1,39 @@
 # ===========================================================================
 # POE2 ENDGAME STRICT LOOT FILTER
-# Version: 1.2  |  Schwierigkeit: Strikt (Endgame)
+# Version: 1.3  |  Schwierigkeit: Strikt (Endgame)
 # Optimiert fuer: Endgame-Farming, hohe Waystone-Tier-Gebiete
 #
-# WICHTIG - PoE2 Klassen-Namen (verifiziert gegen NeverSink PoE2):
-#   - Currency/Orbs/Essences/Omens/Splinter = Class "Stackable Currency"
-#   - Gems (Skill + Support)                 = Class "Gems"
-#   - Jewels                                  = Class "Jewels"
-#   - Waystones                               = Class "Waystones"
-#   - Runes                                   = Class "Runes"
-#   - Soul Cores                              = Class "Soul Cores"
-#   - Charms                                  = Class "Charms"
-#   - Rings                                   = Class "Rings"
-#   - Tablets                                 = Class "Tablet"
-#   Spezial-Items werden ueber BaseType erkannt (klassen-unabhaengig,
-#   robust gegen Patch-Aenderungen).
+# WICHTIG - PoE2 validiert STRENG:
+#   - Ein ungueltiger Class- ODER BaseType-Name bricht den GANZEN Filter ab.
+#   - Alle BaseType-Namen hier sind gegen poe2db verifiziert.
+#   - Klassen (verifiziert gegen NeverSink PoE2): "Stackable Currency",
+#     "Gems", "Jewels", "Waystones", "Runes", "Soul Cores", "Charms",
+#     "Tablet".
+#   - Spezial-Items ueber kurze BaseType-Stems erkannt, die garantiert
+#     mind. eine echte Base treffen: "Essence", "Liquid" (Delirium,
+#     umbenannt von "Distilled" in 0.3.0), "Omen", "Uncut", "Logbook".
 #
 # FARBCODE:
-#   Rot         = Mirror-Tier / Ultra-Selten
-#   Gold/Gelb   = Top-Currency (Divine, Exalted, Perfect Jeweller's)
-#   Orange      = Hohe/Mittlere Currency
+#   Rot         = Mirror / Hinekora's Lock (Chase)
+#   Gold        = Top-Currency (Divine, Perfect-Varianten, Perfect Jeweller)
+#   Orange      = Hohe Currency
+#   Gelb        = Mittlere Currency
 #   Pink        = Essences / Omens
+#   Blau        = Liquid Emotions (Delirium)
+#   Gruen       = Gems (Uncut + geschliffen)
 #   Tuerkis     = Waystones / Tablets
-#   Gruen       = Gems (Uncut + Quality)
-#   Braun       = Unique Items
+#   Braun       = Uniques / Logbooks
 #   Lila        = Runes / Soul Cores
-#   Blau        = Distilled Emotions (Delirium)
 #   Gelb (rand) = Rare Items (hohe ilvl)
 # ===========================================================================
 
 
 # ===========================================================================
-# ABSCHNITT 1: MIRROR TIER  (Extrem selten)
+# ABSCHNITT 1: CHASE / MIRROR TIER
 # ===========================================================================
 
 Show
-    BaseType "Mirror of Kalandra" "Mirror Shard"
+    BaseType "Mirror of Kalandra" "Hinekora's Lock"
     SetTextColor 255 0 0 255
     SetBackgroundColor 0 0 0 255
     SetBorderColor 255 0 0 255
@@ -46,26 +44,16 @@ Show
 
 
 # ===========================================================================
-# ABSCHNITT 2: TOP CURRENCY  (Divine / Exalted / Perfect Jeweller's)
+# ABSCHNITT 2: TOP CURRENCY
 # ===========================================================================
 
 Show
-    BaseType "Divine Orb" "Perfect Jeweller's Orb"
+    BaseType "Divine Orb" "Perfect Jeweller's Orb" "Perfect Exalted Orb" "Perfect Chaos Orb" "Perfect Regal Orb"
     SetTextColor 255 215 0 255
     SetBackgroundColor 60 40 0 255
     SetBorderColor 255 200 0 255
     SetFontSize 45
     PlayAlertSound 6 300
-    MinimapIcon 0 Yellow Star
-    PlayEffect Yellow
-
-Show
-    BaseType "Exalted Orb"
-    SetTextColor 255 210 0 255
-    SetBackgroundColor 50 30 0 255
-    SetBorderColor 220 175 0 255
-    SetFontSize 43
-    PlayAlertSound 1 300
     MinimapIcon 0 Yellow Star
     PlayEffect Yellow
 
@@ -75,7 +63,7 @@ Show
 # ===========================================================================
 
 Show
-    BaseType "Chaos Orb" "Orb of Annulment" "Vaal Orb" "Fracturing Orb" "Gemcutter's Prism" "Greater Jeweller's Orb"
+    BaseType "Exalted Orb" "Chaos Orb" "Orb of Annulment" "Vaal Orb" "Fracturing Orb" "Gemcutter's Prism" "Greater Jeweller's Orb" "Greater Exalted Orb" "Greater Chaos Orb" "Greater Regal Orb"
     SetTextColor 255 165 0 255
     SetBackgroundColor 50 15 0 255
     SetBorderColor 220 130 0 255
@@ -90,7 +78,7 @@ Show
 # ===========================================================================
 
 Show
-    BaseType "Regal Orb" "Orb of Alchemy" "Orb of Chance" "Lesser Jeweller's Orb" "Artificer's Orb" "Arcanist's Etcher"
+    BaseType "Regal Orb" "Orb of Alchemy" "Orb of Chance" "Lesser Jeweller's Orb" "Artificer's Orb" "Arcanist's Etcher" "Greater Orb of Transmutation" "Perfect Orb of Transmutation" "Greater Orb of Augmentation" "Perfect Orb of Augmentation"
     SetTextColor 230 180 70 255
     SetBackgroundColor 40 25 0 220
     SetBorderColor 180 130 50 220
@@ -100,7 +88,7 @@ Show
 
 
 # ===========================================================================
-# ABSCHNITT 5: ESSENCES  (Class "Stackable Currency", per BaseType erkannt)
+# ABSCHNITT 5: ESSENCES  (BaseType-Stem "Essence")
 # ===========================================================================
 
 Show
@@ -115,11 +103,11 @@ Show
 
 
 # ===========================================================================
-# ABSCHNITT 6: OMENS  (Ritual, wertvoll)
+# ABSCHNITT 6: OMENS  (BaseType-Stem "Omen")
 # ===========================================================================
 
 Show
-    BaseType "Omen of"
+    BaseType "Omen"
     SetTextColor 255 140 200 255
     SetBackgroundColor 55 10 35 225
     SetBorderColor 230 90 160 255
@@ -130,56 +118,53 @@ Show
 
 
 # ===========================================================================
-# ABSCHNITT 7: BREACH SPLITTER / BREACHSTONES / FRAGMENTE
+# ABSCHNITT 7: LIQUID EMOTIONS  (Delirium, BaseType-Stem "Liquid")
 # ===========================================================================
 
 Show
-    BaseType "Breachstone"
-    SetTextColor 255 120 0 255
-    SetBackgroundColor 55 15 0 220
-    SetBorderColor 220 80 0 255
-    SetFontSize 38
-    PlayAlertSound 2 220
-    MinimapIcon 1 Orange Star
-    PlayEffect Orange
-
-Show
-    BaseType "Splinter" "Artifact"
-    SetTextColor 255 150 0 255
-    SetBackgroundColor 45 12 0 200
-    SetBorderColor 200 100 0 220
-    SetFontSize 32
-    MinimapIcon 2 Orange Circle
-
-
-# ===========================================================================
-# ABSCHNITT 8: DISTILLED EMOTIONS  (Delirium)
-# ===========================================================================
-
-# Hohe Distilled Emotions
-Show
-    BaseType "Distilled Despair" "Distilled Fear" "Distilled Guilt" "Distilled Envy" "Distilled Ire" "Distilled Disgust"
-    SetTextColor 200 190 255 255
-    SetBackgroundColor 25 20 75 225
-    SetBorderColor 140 130 255 235
+    BaseType "Liquid"
+    SetTextColor 180 175 255 255
+    SetBackgroundColor 20 16 65 225
+    SetBorderColor 120 110 235 235
     SetFontSize 37
     PlayAlertSound 3 190
     MinimapIcon 1 Blue Diamond
     PlayEffect Blue
 
-# Alle anderen Distilled (Sicherheitsnetz)
+
+# ===========================================================================
+# ABSCHNITT 8: UNCUT GEMS  (Skill/Support/Spirit - Haupt-Gem-Quelle)
+# ===========================================================================
+
 Show
-    BaseType "Distilled"
-    SetTextColor 160 155 235 230
-    SetBackgroundColor 15 12 55 200
-    SetBorderColor 105 100 210 205
-    SetFontSize 32
-    MinimapIcon 2 Blue Circle
-    PlayEffect Blue
+    BaseType "Uncut"
+    SetTextColor 26 230 26 255
+    SetBackgroundColor 0 55 0 235
+    SetBorderColor 0 230 0 255
+    SetFontSize 40
+    PlayAlertSound 5 250
+    MinimapIcon 0 Green Circle
+    PlayEffect Green
 
 
 # ===========================================================================
-# ABSCHNITT 9: RUNES  (Class "Runes")
+# ABSCHNITT 9: RESTLICHE CURRENCY  (Sicherheitsnetz - zeigt ALLES uebrige)
+# Faengt jede Stackable Currency ab, die oben nicht spezifisch gestylt wurde
+# (Shards, Whetstones, Scraps, Baubles, Transmute, Augment, Wisdom usw.)
+# ===========================================================================
+
+Show
+    Class "Stackable Currency"
+    SetTextColor 200 200 200 255
+    SetBackgroundColor 0 0 0 180
+    SetBorderColor 140 140 140 200
+    SetFontSize 30
+    PlayAlertSound 3 150
+    MinimapIcon 2 White Circle
+
+
+# ===========================================================================
+# ABSCHNITT 10: RUNES  (Class "Runes")
 # ===========================================================================
 
 Show
@@ -194,7 +179,7 @@ Show
 
 
 # ===========================================================================
-# ABSCHNITT 10: SOUL CORES  (Class "Soul Cores")
+# ABSCHNITT 11: SOUL CORES  (Class "Soul Cores")
 # ===========================================================================
 
 Show
@@ -206,21 +191,6 @@ Show
     PlayAlertSound 5 225
     MinimapIcon 1 Purple Star
     PlayEffect Purple
-
-
-# ===========================================================================
-# ABSCHNITT 11: RESTLICHE CURRENCY  (Sicherheitsnetz - zeigt ALLES uebrige)
-# Faengt jede Stackable Currency ab, die oben nicht spezifisch gestylt wurde
-# ===========================================================================
-
-Show
-    Class "Stackable Currency"
-    SetTextColor 200 200 200 255
-    SetBackgroundColor 0 0 0 180
-    SetBorderColor 140 140 140 200
-    SetFontSize 30
-    PlayAlertSound 3 150
-    MinimapIcon 2 White Circle
 
 
 # ===========================================================================
@@ -261,7 +231,7 @@ Show
 
 
 # ===========================================================================
-# ABSCHNITT 13: TABLETS  (Precursor / Tablet - Atlas)
+# ABSCHNITT 13: TABLETS  (Class "Tablet" - Atlas)
 # ===========================================================================
 
 Show
@@ -276,38 +246,15 @@ Show
 
 
 # ===========================================================================
-# ABSCHNITT 14: GEMS  (Class "Gems")
+# ABSCHNITT 14: GESCHLIFFENE GEMS  (Class "Gems")
 # ===========================================================================
 
-# Uncut Gems (Skill/Support/Spirit) - Hauptquelle fuer Gems, wertvoll
-Show
-    BaseType "Uncut Skill Gem" "Uncut Spirit Gem" "Uncut Support Gem"
-    SetTextColor 26 230 26 255
-    SetBackgroundColor 0 55 0 235
-    SetBorderColor 0 230 0 255
-    SetFontSize 40
-    PlayAlertSound 5 250
-    MinimapIcon 0 Green Circle
-    PlayEffect Green
-
-# Geschliffene Gems mit Qualitaet
 Show
     Class "Gems"
-    Quality >= 1
-    SetTextColor 26 205 26 255
-    SetBackgroundColor 0 38 0 205
-    SetBorderColor 0 175 0 225
-    SetFontSize 36
-    PlayAlertSound 5 180
-    MinimapIcon 1 Green Circle
-
-# Alle anderen Gems
-Show
-    Class "Gems"
-    SetTextColor 26 175 26 255
-    SetBackgroundColor 0 25 0 185
-    SetBorderColor 0 130 0 185
-    SetFontSize 32
+    SetTextColor 26 190 26 255
+    SetBackgroundColor 0 30 0 195
+    SetBorderColor 0 150 0 205
+    SetFontSize 33
     MinimapIcon 2 Green Circle
 
 
@@ -364,14 +311,6 @@ Show
     SetFontSize 32
     MinimapIcon 2 Yellow Circle
 
-# Hochwertige Charms (Quality)
-Show
-    Class "Charms"
-    Quality >= 10
-    SetTextColor 205 205 205 255
-    SetBackgroundColor 0 0 0 185
-    SetFontSize 30
-
 # Normale Charms ausblenden (Endgame)
 Hide
     Class "Charms"
@@ -386,7 +325,7 @@ Show
 
 
 # ===========================================================================
-# ABSCHNITT 18: EXPEDITION LOGBOOKS  (per BaseType erkannt)
+# ABSCHNITT 18: EXPEDITION LOGBOOKS  (BaseType-Stem "Logbook")
 # ===========================================================================
 
 Show
@@ -401,21 +340,7 @@ Show
 
 
 # ===========================================================================
-# ABSCHNITT 19: RELICS  (Trial of Sekhamas, per BaseType erkannt)
-# ===========================================================================
-
-Show
-    BaseType "Relic"
-    SetTextColor 220 190 130 255
-    SetBackgroundColor 45 30 10 215
-    SetBorderColor 175 140 80 215
-    SetFontSize 36
-    PlayAlertSound 3 180
-    MinimapIcon 2 Brown Diamond
-
-
-# ===========================================================================
-# ABSCHNITT 20: RARE ITEMS  (Endgame-Bases nach ItemLevel)
+# ABSCHNITT 19: RARE ITEMS  (Endgame-Bases nach ItemLevel)
 # ===========================================================================
 
 # Hohe ilvl Rares (75+): Immer anzeigen
@@ -444,7 +369,7 @@ Hide
 
 
 # ===========================================================================
-# ABSCHNITT 21: MAGIC ITEMS  (groesstenteils ausblenden)
+# ABSCHNITT 20: MAGIC ITEMS  (groesstenteils ausblenden)
 # ===========================================================================
 
 # Magic Items mit sehr hoher ilvl (Endgame Craft-Bases)
@@ -462,7 +387,7 @@ Hide
 
 
 # ===========================================================================
-# ABSCHNITT 22: NORMALE (WEISSE) ITEMS  (alle ausblenden)
+# ABSCHNITT 21: NORMALE (WEISSE) ITEMS  (alle ausblenden)
 # ===========================================================================
 
 Hide
@@ -480,5 +405,5 @@ Hide
 
 # ===========================================================================
 # END OF FILTER
-# poe2-endgame-strict.filter  |  v1.2
+# poe2-endgame-strict.filter  |  v1.3
 # ===========================================================================
