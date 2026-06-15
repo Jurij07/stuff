@@ -1,7 +1,12 @@
 # ===========================================================================
 # POE2 ENDGAME STRICT LOOT FILTER
-# Version: 1.5  |  Schwierigkeit: Strikt (Endgame)
+# Version: 1.6  |  Schwierigkeit: Strikt (Endgame / Profit-optimiert)
 # Patch: 0.5.x "Return of the Ancients"
+#
+# PROFIT-PHILOSOPHIE: Reich werden = Effizienz. Wertvolles ist unuebersehbar,
+# Muell ist weg. Versteckt: Magic komplett, Rares unter ilvl 75, Normale.
+# Sichtbar bleibt alles Geldbringende (Currency, Waystones, Tablets, Essences,
+# Omens, Soul Cores, Uncut Gems, Idols, Uniques, 75+ Rare-Bases).
 #
 # DESIGN-PRINZIP (PoE2 validiert STRENG - ein ungueltiger Name bricht den
 # GANZEN Filter ab):
@@ -336,34 +341,18 @@ Show
     SetFontSize 33
     MinimapIcon 2 Yellow Circle
 
-# Mittlere ilvl Rares (60-74)
-Show
-    Rarity Rare
-    ItemLevel >= 60
-    SetTextColor 220 215 90 220
-    SetBackgroundColor 20 18 0 190
-    SetBorderColor 130 125 0 190
-    SetFontSize 30
-
-# Niedrige ilvl Rares: Ausblenden im Endgame
+# Mittlere & niedrige ilvl Rares: Ausblenden im Endgame
+# (Profit = Effizienz: nur 75+ Bases lohnen sich zum Aufheben/Verkaufen)
 Hide
     Rarity Rare
     SetFontSize 18
 
 
 # ===========================================================================
-# ABSCHNITT 19: MAGIC ITEMS  (groesstenteils ausblenden)
+# ABSCHNITT 19: MAGIC ITEMS  (komplett ausblenden - reine Zeitverschwendung)
+# Bases zum Craften kauft man gezielt, statt jedes blaue Item zu pruefen
 # ===========================================================================
 
-# Magic Items mit sehr hoher ilvl (Endgame Craft-Bases)
-Show
-    Rarity Magic
-    ItemLevel >= 82
-    SetTextColor 95 95 200 195
-    SetBorderColor 70 70 175 175
-    SetFontSize 22
-
-# Alle anderen Magic Items ausblenden
 Hide
     Rarity Magic
     SetFontSize 14
@@ -388,5 +377,5 @@ Hide
 
 # ===========================================================================
 # END OF FILTER
-# poe2-endgame-strict.filter  |  v1.5
+# poe2-endgame-strict.filter  |  v1.6
 # ===========================================================================
