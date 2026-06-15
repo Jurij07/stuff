@@ -1,6 +1,6 @@
 # ===========================================================================
 # POE2 ENDGAME STRICT LOOT FILTER
-# Version: 1.4  |  Schwierigkeit: Strikt (Endgame)
+# Version: 1.5  |  Schwierigkeit: Strikt (Endgame)
 # Patch: 0.5.x "Return of the Ancients"
 #
 # DESIGN-PRINZIP (PoE2 validiert STRENG - ein ungueltiger Name bricht den
@@ -13,6 +13,20 @@
 #       "Charm", "Logbook"
 #   - Currency-BaseTypes gegen poe2db verifiziert
 #   - Gear/Jewels/Relics laufen ueber Rarity-Regeln
+#
+# SOUND-SCHEMA:
+#   Kein Sound  = Gold (Top Currency), Runes, niedrige Stackable Currency,
+#                 Waystones T6-T10
+#   Sound 6 300 = Mirror / Hinekora's Lock (Chase)
+#   Sound 1 250 = Hohe Currency (Exalted, Chaos, Annulment usw.)
+#   Sound 2 180 = Mittlere Currency
+#   Sound 5 250 = Uncut Gems  (hohe Prioritaet)
+#   Sound 5 220 = Essences
+#   Sound 5 200 = Omens / Soul Cores
+#   Sound 3 180 = Idols / Logbooks
+#   Sound 3 160 = Liquid Emotions / Tablets
+#   Sound 4 250 = Waystones T11+
+#   Sound 3 260 = Unique Items
 #
 # FARBCODE:
 #   Rot     = Mirror / Hinekora's Lock (Chase)
@@ -40,7 +54,7 @@ Show
 
 
 # ===========================================================================
-# ABSCHNITT 2: TOP CURRENCY
+# ABSCHNITT 2: TOP CURRENCY  (kein Sound - damit es nicht nervt beim farmen)
 # ===========================================================================
 
 Show
@@ -49,7 +63,6 @@ Show
     SetBackgroundColor 60 40 0 255
     SetBorderColor 255 200 0 255
     SetFontSize 45
-    PlayAlertSound 6 300
     MinimapIcon 0 Yellow Star
     PlayEffect Yellow
 
@@ -64,7 +77,7 @@ Show
     SetBackgroundColor 50 15 0 255
     SetBorderColor 220 130 0 255
     SetFontSize 40
-    PlayAlertSound 2 300
+    PlayAlertSound 1 250
     MinimapIcon 1 Orange Diamond
     PlayEffect Orange
 
@@ -79,7 +92,7 @@ Show
     SetBackgroundColor 40 25 0 220
     SetBorderColor 180 130 50 220
     SetFontSize 36
-    PlayAlertSound 3 220
+    PlayAlertSound 2 180
     MinimapIcon 2 Yellow Circle
 
 
@@ -93,7 +106,7 @@ Show
     SetBackgroundColor 60 0 65 225
     SetBorderColor 225 0 225 255
     SetFontSize 39
-    PlayAlertSound 3 225
+    PlayAlertSound 5 220
     MinimapIcon 0 Pink Diamond
     PlayEffect Pink
 
@@ -108,7 +121,7 @@ Show
     SetBackgroundColor 55 10 35 225
     SetBorderColor 230 90 160 255
     SetFontSize 39
-    PlayAlertSound 3 220
+    PlayAlertSound 5 200
     MinimapIcon 0 Pink Star
     PlayEffect Pink
 
@@ -123,7 +136,7 @@ Show
     SetBackgroundColor 20 16 65 225
     SetBorderColor 120 110 235 235
     SetFontSize 37
-    PlayAlertSound 3 190
+    PlayAlertSound 3 160
     MinimapIcon 1 Blue Diamond
     PlayEffect Blue
 
@@ -144,7 +157,7 @@ Show
 
 
 # ===========================================================================
-# ABSCHNITT 9: RUNES
+# ABSCHNITT 9: RUNES  (kein Sound - fallen sehr haeufig)
 # ===========================================================================
 
 Show
@@ -153,7 +166,6 @@ Show
     SetBackgroundColor 35 0 60 215
     SetBorderColor 160 100 255 235
     SetFontSize 35
-    PlayAlertSound 3 180
     MinimapIcon 2 Purple Circle
     PlayEffect Purple
 
@@ -168,7 +180,7 @@ Show
     SetBackgroundColor 60 0 65 235
     SetBorderColor 255 100 255 255
     SetFontSize 39
-    PlayAlertSound 5 225
+    PlayAlertSound 5 200
     MinimapIcon 1 Purple Star
     PlayEffect Purple
 
@@ -183,15 +195,14 @@ Show
     SetBackgroundColor 10 45 20 230
     SetBorderColor 90 220 130 240
     SetFontSize 38
-    PlayAlertSound 5 210
+    PlayAlertSound 3 180
     MinimapIcon 1 Green Hexagon
     PlayEffect Green
 
 
 # ===========================================================================
-# ABSCHNITT 12: RESTLICHE CURRENCY  (Sicherheitsnetz - zeigt ALLES uebrige)
+# ABSCHNITT 12: RESTLICHE CURRENCY  (kein Sound - Shards, Whetstones, usw.)
 # Faengt jede Stackable Currency ab, die oben nicht spezifisch gestylt wurde
-# (Shards, Whetstones, Scraps, Baubles, Transmute, Augment, Wisdom usw.)
 # ===========================================================================
 
 Show
@@ -200,7 +211,6 @@ Show
     SetBackgroundColor 0 0 0 180
     SetBorderColor 140 140 140 200
     SetFontSize 30
-    PlayAlertSound 3 150
     MinimapIcon 2 White Circle
 
 
@@ -220,7 +230,7 @@ Show
     MinimapIcon 0 Cyan Square
     PlayEffect Cyan
 
-# T6-T10: Mittlere Tier Waystones
+# T6-T10: Mittlere Tier Waystones (kein Sound)
 Show
     BaseType "Waystone"
     WaystoneTier >= 6
@@ -228,7 +238,6 @@ Show
     SetBackgroundColor 0 30 50 240
     SetBorderColor 0 175 215 240
     SetFontSize 39
-    PlayAlertSound 4 200
     MinimapIcon 1 Cyan Square
     PlayEffect Cyan
 
@@ -251,7 +260,7 @@ Show
     SetBackgroundColor 0 38 70 225
     SetBorderColor 65 165 255 225
     SetFontSize 38
-    PlayAlertSound 4 185
+    PlayAlertSound 4 160
     MinimapIcon 1 Cyan Diamond
     PlayEffect Cyan
 
@@ -293,7 +302,7 @@ Show
     SetBackgroundColor 48 28 0 205
     SetBorderColor 165 115 0 205
     SetFontSize 38
-    PlayAlertSound 3 185
+    PlayAlertSound 3 180
     MinimapIcon 1 Brown Diamond
     PlayEffect Brown
 
@@ -379,5 +388,5 @@ Hide
 
 # ===========================================================================
 # END OF FILTER
-# poe2-endgame-strict.filter  |  v1.4
+# poe2-endgame-strict.filter  |  v1.5
 # ===========================================================================
