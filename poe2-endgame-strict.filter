@@ -1,7 +1,7 @@
 # ===========================================================================
 # POE2 ENDGAME STRICT LOOT FILTER
-# Version: 1.0  |  Schwierigkeit: Strikt (Endgame)
-# Optimiert fuer: Endgame-Farming, hohe MapTier-Gebiete
+# Version: 1.1  |  Schwierigkeit: Strikt (Endgame)
+# Optimiert fuer: Endgame-Farming, hohe Waystone-Tier-Gebiete
 #
 # FARBCODE:
 #   Rot/Pink    = Mirror-Tier / Ultra-Selten
@@ -174,7 +174,7 @@ Show
 # T11-T15: Hohe Tier Waystones
 Show
     Class "Waystone"
-    MapTier >= 11
+    WaystoneTier >= 11
     SetTextColor 0 255 255 255
     SetBackgroundColor 0 50 70 255
     SetBorderColor 0 230 255 255
@@ -186,7 +186,7 @@ Show
 # T6-T10: Mittlere Tier Waystones
 Show
     Class "Waystone"
-    MapTier >= 6
+    WaystoneTier >= 6
     SetTextColor 0 210 240 255
     SetBackgroundColor 0 30 50 240
     SetBorderColor 0 175 215 240
@@ -260,7 +260,7 @@ Show
 # ABSCHNITT 10: JEWELS
 # ===========================================================================
 
-# Unique Jewels (bereits von Abschnitt 9 erfasst, hier zur Sicherheit)
+# Rare Jewels
 Show
     Class "Jewel"
     Rarity Rare
@@ -337,7 +337,7 @@ Show
 
 # Breach Ringe
 Show
-    Class "Breach Ring" "Ring"
+    Class "Ring"
     BaseType "Breach Ring"
     SetTextColor 255 120 0 255
     SetBackgroundColor 60 20 0 225
@@ -395,17 +395,6 @@ Show
 # ===========================================================================
 # ABSCHNITT 16: CHARMS  (Kolben-Ersatz in PoE2)
 # ===========================================================================
-
-# Unique Charms (von Abschnitt 9 erfasst, Sicherheitsnetz)
-Show
-    Class "Charm"
-    Rarity Unique
-    SetTextColor 175 96 37 255
-    SetBackgroundColor 53 28 9 255
-    SetBorderColor 175 96 37 255
-    SetFontSize 40
-    PlayAlertSound 3 225
-    MinimapIcon 1 Brown Star
 
 # Hochwertige Charms
 Show
@@ -544,5 +533,5 @@ Hide
 
 # ===========================================================================
 # END OF FILTER
-# poe2-endgame-strict.filter  |  v1.0
+# poe2-endgame-strict.filter  |  v1.1
 # ===========================================================================
